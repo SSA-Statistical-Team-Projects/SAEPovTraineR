@@ -2,6 +2,7 @@
 ################## DATA TYPES AND STRUCTURES IN R ####################
 ######################################################################
 
+pacman::p_load(dplyr)
 ### the 4 data types that this class will focus on
 ### (numerics, characters, logicals and factors)
 
@@ -99,6 +100,18 @@ sample_df <- data.frame(colors = c(rep("red", 10000),
                                    rep("white", 10000),
                                    rep("black", 10000)),
                         score = abs(100*rnorm(50000)))
+
+### lets subset the data
+sample_df$colors ### the first column called colors
+sample_df$score ### the second column called scores
+
+sample_df[, "colors"] ### subset a column (called colors) by name
+sample_df[, "score"] ### subset a column (called score) by name
+
+sample_df[sample_df$colors == "red",]
+
+sample_df %>%
+  filter(colors == "red")
 
 
 
