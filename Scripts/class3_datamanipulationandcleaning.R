@@ -118,11 +118,39 @@ sample_df$adj_score <- sample_df$scores + 10
 sample_df["adj_score"] <- sample_df["scores"] + 10
 
 
+#### creating a gender variable to assign names to gender
+
+sample_df$gender <-
+  ifelse(test = sample_df$indiv %in% c("ify", "taonga", "moses", "humphrey",
+             "mutaba", "james"),
+         yes = "male",
+         no = "female")
+
+#### create a variable called "score_indicator" i.e. if
+#### the score is greater than 70, label it as 1, otherwise,
+#### score_indicator is 0
+
+sample_df$score_indicator <-
+  ifelse(sample_df$scores >= 70, 1, 0)
+
+table(sample_df$score_indicator) ## to tabulate results
+summary(sample_df$score_indicator) ## check distribution
+
+## plot histogram of score
+hist(sample_df$scores)
 
 
+### replace all bertha's scores with NA
+sample_df$scores[sample_df$indiv == "bertha"] <- NA
+# sample_df$score_indicator <-
+#   ifelse(sample_df$scores >= 70, 1,
+#          ifelse(sample_df$scores < 70, 0, NA))
 
+sample_df$score_indicator2 <-
+  ifelse(sample_df$scores >= 70, 1, 0)
 
-
+### change the values in score_indicator that are NA
+### back to 0
 
 
 
